@@ -1,0 +1,29 @@
+<template>
+  <div>
+    <div class="title">热销推荐</div>
+    <ul>
+      <router-link tag="li" class="item border-bottom"
+                   v-for="item of list" :key="item.id" :to="'/detail/'+item.id">
+        <img :src="item.imgUrl" class="item-img"/>
+        <div class="item-info">
+          <p class="item-title">{{item.title}}</p>
+          <p class="item-desc">{{item.desc}}</p>
+          <button class="item-button">查看详情</button>
+        </div>
+      </router-link>
+    </ul>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "Recommend",
+    props: {
+      list: Array
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>
