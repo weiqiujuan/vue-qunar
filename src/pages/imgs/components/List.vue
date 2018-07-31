@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import Gallery from '@/common/gallery/Gallery';
+  import Gallery from '@/common/gallary/Gallery';
   import Fade from '@/common/fade/Fade';
 
   export default {

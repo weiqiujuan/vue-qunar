@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <swiper :options="swiperOption" v-if="showSwiper">
-      <swiper-slide v-for="(item,index) in list" :key="index">
-        <img :src="item" alt="" class="swiper-item">
+    <swiper :options="swiperOption">
+      <swiper-slide v-for="(item,index) in swiperList" :key="index">
+        <img :src="item" class="swiper-item">
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -11,9 +11,9 @@
 
 <script>
   export default {
-    name: "Swiper",
+    name: 'HomeSwiper',
     props: {
-      list: Array
+      swiperList: Array
     },
     data() {
       return {
@@ -24,15 +24,21 @@
           autoplay: true
         }
       }
-    },
-    computed: {
-      showSwiper() {
-        return this.list.length
-      }
     }
   }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
+  .wrapper >>> .swiper-pagination-bullet-active
+    background-color #fff !important
 
+  .wrapper
+    overflow hidden
+    background-color #ddd
+    height 0
+    width 100%
+    padding-bottom 26.7%
+
+  .swiper-item
+    width 100%
 </style>

@@ -1,48 +1,43 @@
 <template>
   <div>
-    <header></header>
-    <swiper :list="swiperList"></swiper>
-    <icons :list="iconList"></icons>
-    <hot :hotList="hotList" :topIcon="topIcon"></hot>
-    <youLike :itemList="itemList"></youLike>
-    <weekend :list="weekendList"></weekend>
+    <home-header></home-header>
+    <home-swiper :swiperList="swiperList"></home-swiper>
+    <home-icons :iconList="iconList"></home-icons>
+    <home-hot :hotList="hotList" :topIcon="topIcon"></home-hot>
+    <home-youlike :itemList="itemList"></home-youlike>
+    <home-weekends :weekendList="weekendList"></home-weekends>
   </div>
 </template>
 
 <script>
-  import Header from './components/Header'
-  import Swiper from './components/Swiper'
-  import Weekend from './components/Weekend'
-  import Icons from './components/Icons'
-  import Hot from './components/Hot'
-  import YouLike from './components/Youlike'
+  import HomeHeader from './components/Header'
+  import HomeSwiper from './components/Swiper'
+  import HomeIcons from './components/Icons'
+  import HomeHot from './components/Hot'
+  import HomeYoulike from './components/Youlike'
+  import HomeWeekends from './components/Weekends'
+  import ApiUrl from '@/config/api_url'
   import axios from 'axios'
-  import ApiUrl from '@/config/api_url';
-  import {mapState} from 'vuex'
 
   export default {
-    name: "Home",
+    name: 'Home',
     components: {
-      Header,
-      Swiper,
-      Weekend,
-      Icons,
-      Hot,
-      YouLike
+      HomeHeader,
+      HomeSwiper,
+      HomeIcons,
+      HomeHot,
+      HomeYoulike,
+      HomeWeekends
     },
     data() {
       return {
         swiperList: [],
-        hotList: [],
         iconList: [],
+        hotList: [],
         topIcon: [],
         itemList: [],
         weekendList: []
-
       }
-    },
-    computed: {
-      ...mapState(['city'])
     },
     methods: {
       getHomeInfo() {
@@ -50,29 +45,23 @@
           .then(this.getHomeInfoSucc)
       },
       getHomeInfoSucc(res) {
-        res = res.data;
-        if (res.ret && res.data) {
-          const data = res.data;
-          this.swiperList = data.swiperList;
-          this.iconList = data.iconList;
-          this.hotList = data.hotList;
-          this.itemList = data.itemList;
+        if (res.data.ret && res.data.data) {
+          const data = res.data.data
+          this.swiperList = data.swiperList
+          this.iconList = data.iconList
+          this.hotList = data.hotList
+          this.topIcon = data.topIcon
+          this.itemList = data.itemList
           this.weekendList = data.weekendList
         }
       }
     },
     mounted() {
-      this.getHomeInfo();
-    }/*,
-    activated() {
-      if (this.lastCity !== this.city) {
-        this.lastCity = this.city;
-        this.getHomeInfo();
-      }
-    }*/
+      this.getHomeInfo()
+    }
   }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
 
 </style>

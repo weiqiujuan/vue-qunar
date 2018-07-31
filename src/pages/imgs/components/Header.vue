@@ -14,8 +14,8 @@
 </script>
 
 <style scoped lang="stylus">
-  @import "~styles/variable.styl"
-  @import "~styles/mixins.styl"
+  /*@import "~styles/variable.styl"
+  @import "~styles/mixins.styl"*/
   .header
     position fixed
     top 0
